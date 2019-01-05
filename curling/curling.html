@@ -17,18 +17,22 @@
 </head>
 
 <body style="margin:0; padding:0; cursor:pointer;">
-    <audio id="sound_hit" preload="auto" src="cursor9.mp3"></audio>
-    <audio id="sound_generateArrow" preload="auto" src="magic-worp1.mp3"></audio>
+    <!-- サウンド -->
+    <audio id="sound_hit" preload="auto" src="sound/cursor9.mp3"></audio>
+    <audio id="sound_startButton" preload="auto" src="sound/magic-worp1.mp3"></audio>
 
+    <!-- スコアボード -->
     <div style="font-size: 30px; margin-top: 10px; margin-bottom: 10px;">
         <input id="score-red" type="text" style="float: left; border-color:red; background-color: salmon;" disabled />
         <input id="score-blue" type="text" style="float:right; border-color: blue; background-color: royalblue;"
             disabled />
     </div>
+    <!-- スタートボタン -->
     <div style="text-align:center">
-        <input id="generateArrow" class="btn btn-default" stype="button" value="スタート" width="50" height="50" />
+        <input id="startButton" class="btn btn-default" stype="button" value="スタート" width="50" height="50" />
     </div>
 
+    <!-- ゲームステージ -->
     <div style="width: 1500px; margin: 0 auto;">
         <main id="stage"></main>
     </div>

@@ -1,27 +1,15 @@
 (function () {
+    /**
+     * ランダムに色を取得する
+     */
     function GetRandomColor() {
         return "rgb(" + (~~(256 * Math.random())) + ", " + (~~(256 * Math.random())) + ", " + (~~(256 * Math.random())) + ")";
     }
 
-    function GenerateArrow() {
-
-        // $.get('./right.svg').done(function (data) {
-        //     var vertexSets = [],
-        //         color = Common.choose(['#556270', '#4ECDC4', '#C7F464', '#FF6B6B', '#C44D58']);
-
-        //     $(data).find('path').each(function (i, path) {
-        //         var points = Svg.pathToVertices(path, 30);
-        //         vertexSets.push(Vertices.scale(points, 0.4, 0.4));
-        //     });
-
-        //     World.add(engine.world, Bodies.fromVertices(100 + 150, 200 + 50, vertexSets, {
-        //         render: {
-        //             fillStyle: GetRandomColor()
-        //             // strokeStyle: color,
-        //             // lineWidth: 1
-        //         }
-        //     }));
-        // });
+    /**
+     * ゲームを開始する
+     */
+    function StartGame() {
 
         World.add(engine.world, Bodies.circle(80, 320, 30, {
 
@@ -40,46 +28,51 @@
         }));
     }
 
-    function CreateDartsTarget() {
+    // function CreateDartsTarget() {
 
-        var targetCount = 0;
-        return Composites.stack(980, 0, 1, 5, 0, 0, function (x, y) {
+    //     var targetCount = 0;
+    //     return Composites.stack(980, 0, 1, 5, 0, 0, function (x, y) {
 
-            var targetLabel = "";
-            var targetColor = "";
-            targetCount++;
-            switch (targetCount) {
-                case 1:
-                case 5:
-                    targetLabel = "low-point";
-                    targetColor = "#ffff00";
-                    break;
+    //         var targetLabel = "";
+    //         var targetColor = "";
+    //         targetCount++;
+    //         switch (targetCount) {
+    //             case 1:
+    //             case 5:
+    //                 targetLabel = "low-point";
+    //                 targetColor = "#ffff00";
+    //                 break;
 
-                case 2:
-                case 4:
-                    targetLabel = "middle-point";
-                    targetColor = "#ffa500";
-                    break;
+    //             case 2:
+    //             case 4:
+    //                 targetLabel = "middle-point";
+    //                 targetColor = "#ffa500";
+    //                 break;
 
-                case 3:
-                    targetLabel = "high-point";
-                    targetColor = "#ff0000";
-                    break;
+    //             case 3:
+    //                 targetLabel = "high-point";
+    //                 targetColor = "#ff0000";
+    //                 break;
 
-                default:
-                    break;
-            }
+    //             default:
+    //                 break;
+    //         }
 
-            return Bodies.rectangle(x, y, 20, 124, {
-                isStatic: true,
-                label: targetLabel,
-                render: {
-                    fillStyle: targetColor
-                }
-            });
-        });
-    }
+    //         return Bodies.rectangle(x, y, 20, 124, {
+    //             isStatic: true,
+    //             label: targetLabel,
+    //             render: {
+    //                 fillStyle: targetColor
+    //             }
+    //         });
+    //     });
+    // }
 
+    /**
+     * カーリングのハウスを生成する
+     * @param {ハウスの半径} radius 
+     * @param {ハウスに付ける内部的な名称} label 
+     */
     function CreateHouse(radius, label) {
 
         return Bodies.circle(650, 310, radius, {
@@ -125,7 +118,7 @@
     });
 
     // イベント設定
-    // オブジェクト衝突時
+    // オブジェクト衝突開始イベント
     Events.on(engine, "collisionStart", function (e) {
 
         let bodyA = e.pairs[0].bodyA;
@@ -137,8 +130,9 @@
         } else if (bodyB.label.split('-')[0] == 'stone') {
 
         }
-    })
+    });
 
+    // オブジェクト衝突終了イベント
     Events.on(engine, "collisionEnd", function (e) {
 
         let bodyA = e.pairs[0].bodyA;
@@ -157,15 +151,17 @@
         }
     })
 
-    // ダーツ矢生成ボタン押下時
-    $("#generateArrow").on("click", function () {
+    // スタートボタン押下イベント
+    $("#startButton").on("click", function () {
 
-        $("#sound_generateArrow").get(0).play();
-        GenerateArrow();
+        $("#sound_startButton").get(0).play();
+        StartGame();
     });
 
     // オブジェクト作成
     // var dartsTarget = CreateDartsTarget();
+
+    // ハウスを作成する
     [
         [300, 'big'],
         [150, 'middle'],
@@ -175,6 +171,7 @@
         World.add(engine.world, CreateHouse(set[0], set[1]));
     });
 
+    // マウス制御の設定を行う
     var mouse = Mouse.create(render.canvas);
     var mouseConstraint = MouseConstraint.create(engine, {
         mouse: mouse,
@@ -191,10 +188,6 @@
     engine.world.gravity.y = 0;
     World.add(engine.world, [mouseConstraint]);
 
-    // run the engine
     Engine.run(engine);
-
-    // run the renderer
     Render.run(render);
-
 })();
