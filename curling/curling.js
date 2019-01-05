@@ -23,7 +23,7 @@
         //     }));
         // });
 
-        World.add(engine.world, Bodies.circle(30, 100, 30, {
+        World.add(engine.world, Bodies.circle(80, 320, 30, {
 
             label: 'stone-red',
             render: {
@@ -31,7 +31,7 @@
             }
         }));
 
-        World.add(engine.world, Bodies.circle(30, 100, 30, {
+        World.add(engine.world, Bodies.circle(1200, 320, 30, {
 
             label: 'stone-blue',
             render: {
@@ -113,7 +113,8 @@
 
     var render = Render.create({
         element: document.body,
-        engine: engine, options: {
+        engine: engine,
+        options: {
             width: 1300,
             height: 620,
             background: "#000000",
@@ -131,11 +132,9 @@
         let bodyB = e.pairs[0].bodyB;
         if (bodyA.label.split('-')[0] == 'stone' && bodyB.label.split('-')[0] == 'stone') {
             $("#sound_hit").get(0).play();
-        }
-        else if (bodyA.label.split('-')[0] == 'stone') {
+        } else if (bodyA.label.split('-')[0] == 'stone') {
 
-        }
-        else if (bodyB.label.split('-')[0] == 'stone') {
+        } else if (bodyB.label.split('-')[0] == 'stone') {
 
         }
     })
@@ -146,17 +145,14 @@
         let bodyB = e.pairs[0].bodyB;
         if (bodyA.label.split('-')[0] == 'stone' && bodyB.label.split('-')[0] == 'stone') {
             return;
-        }
-        else if (bodyA.label.split('-')[0] == 'stone') {
+        } else if (bodyA.label.split('-')[0] == 'stone') {
 
             if (bodyA.label == 'stone-red') {
 
-            }
-            else if (bodyA.label == 'stone-blue') {
+            } else if (bodyA.label == 'stone-blue') {
 
             }
-        }
-        else if (bodyB.label.split('-')[0] == 'stone') {
+        } else if (bodyB.label.split('-')[0] == 'stone') {
 
         }
     })
@@ -170,7 +166,11 @@
 
     // オブジェクト作成
     // var dartsTarget = CreateDartsTarget();
-    [[300, 'big'], [150, 'middle'], [50, 'small']].forEach(set => {
+    [
+        [300, 'big'],
+        [150, 'middle'],
+        [50, 'small']
+    ].forEach(set => {
         // var house = CreateHouse(radius);
         World.add(engine.world, CreateHouse(set[0], set[1]));
     });
