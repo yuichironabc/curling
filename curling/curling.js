@@ -15,7 +15,7 @@
 
             label: 'stone-red',
             render: {
-                fillStyle: GetRandomColor()
+                fillStyle: "#FC6E51"
             }
         }));
 
@@ -23,7 +23,7 @@
 
             label: 'stone-blue',
             render: {
-                fillStyle: GetRandomColor()
+                fillStyle: "#5D9CEC"
             }
         }));
     }
@@ -73,7 +73,7 @@
      * @param {ハウスの半径} radius 
      * @param {ハウスに付ける内部的な名称} label 
      */
-    function CreateHouse(radius, label) {
+    function CreateHouse(radius, label, color) {
 
         return Bodies.circle(650, 310, radius, {
 
@@ -81,7 +81,7 @@
             isStatic: true,
             label: label,
             render: {
-                fillStyle: GetRandomColor()
+                fillStyle: color
             }
         });
     }
@@ -163,12 +163,12 @@
 
     // ハウスを作成する
     [
-        [300, 'big'],
-        [150, 'middle'],
-        [50, 'small']
+        [300, 'big', '#EEEEEE'],
+        [150, 'middle', '#ABB7B7'],
+        [50, 'small', '#6C7A89']
     ].forEach(set => {
         // var house = CreateHouse(radius);
-        World.add(engine.world, CreateHouse(set[0], set[1]));
+        World.add(engine.world, CreateHouse(set[0], set[1], set[2]));
     });
 
     // マウス制御の設定を行う

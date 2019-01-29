@@ -9,11 +9,12 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Users/yuuichirou/develop/matter/bootflat.github.io-master/css/site.min.css">
+    <link rel="stylesheet" href="curling.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 </head>
 
 <body style="margin:0; padding:0; cursor:pointer;">
@@ -23,13 +24,12 @@
 
     <!-- スコアボード -->
     <div style="font-size: 30px; margin-top: 10px; margin-bottom: 10px;">
-        <input id="score-red" type="text" style="float: left; border-color:red; background-color: salmon;" disabled />
-        <input id="score-blue" type="text" style="float:right; border-color: blue; background-color: royalblue;"
-            disabled />
+        <span id="score-red" class="label label-default">aaa</span>
+        <span id="score-blue" class="label label-default">bbb</span>
     </div>
     <!-- スタートボタン -->
     <div style="text-align:center">
-        <input id="startButton" class="btn btn-default" stype="button" value="スタート" width="50" height="50" />
+        <button id="startButton" class="btn btn-primary btn-lg" type="button">Game Start</button>
     </div>
 
     <!-- ゲームステージ -->

@@ -1,0 +1,16 @@
+#score-red {
+  float: left;
+  border: none;
+  background-color: #FC6E51;
+  margin-left: 50px; }
+
+#score-blue {
+  float: right;
+  border: none;
+  background-color: #5D9CEC;
+  margin-right: 50px; }
+
+#startButton {
+  margin-bottom: 10px; }
+
+/*# sourceMappingURL=curling.css.map */
