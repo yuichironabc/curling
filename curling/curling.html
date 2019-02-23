@@ -9,8 +9,9 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/Users/yuuichirou/develop/matter/bootflat.github.io-master/css/site.min.css">
-    <link rel="stylesheet" href="curling.css">
+    <link rel="stylesheet" href="../z/node_modules/bootflat/css/site.min.css">
+    <link rel="stylesheet" href="../z/node_modules/jquery-ui-dist/jquery-ui.min.css">
+    <link rel="stylesheet" href="./curling.css">
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
     <!-- Latest compiled and minified JavaScript -->
@@ -19,17 +20,24 @@
 
 <body style="margin:0; padding:0; cursor:pointer;">
     <!-- サウンド -->
-    <audio id="sound_hit" preload="auto" src="sound/cursor9.mp3"></audio>
-    <audio id="sound_startButton" preload="auto" src="sound/magic-worp1.mp3"></audio>
+    <audio id="sound_hit" preload="auto" src="./sound/cursor9.mp3"></audio>
+    <audio id="sound_startButton" preload="auto" src="./sound/magic-worp1.mp3"></audio>
 
     <!-- スコアボード -->
-    <div style="font-size: 30px; margin-top: 10px; margin-bottom: 10px;">
-        <span id="score-red" class="label label-default">aaa</span>
-        <span id="score-blue" class="label label-default">bbb</span>
+    <div id="score-board" style="font-size: 30px; margin-top: 10px; margin-bottom: 10px;">
+        <span id="score-red" class="label label-default"></span>
+        <span id="score-blue" class="label label-default"></span>
+        <!-- <input type="text" id="score-red" />
+        <input type="text" id="score-blue" /> -->
     </div>
     <!-- スタートボタン -->
     <div style="text-align:center">
+        <label id="message-red"></label>
+        <!-- <label id="message-red2">DRAW</label> -->
         <button id="startButton" class="btn btn-primary btn-lg" type="button">Game Start</button>
+        <!-- <label id="message-blue2">DRAW</label> -->
+        <label id="message-blue"></label>
+        <!-- <div id="slider" style="margin:20px;"></div> -->
     </div>
 
     <!-- ゲームステージ -->
@@ -37,10 +45,13 @@
         <main id="stage"></main>
     </div>
 
-    <script src="/Users/yuuichirou/node_modules/matter-js/build/matter.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="decomp.js"></script>
-    <script src="curling.js"></script>
+    <script type="text/javascript" src="../z/node_modules/matter-js/build/matter.min.js"></script>
+    <script type="text/javascript" src="../z/node_modules/sugar/release/sugar-full.development.js"></script>
+    <script type="text/javascript" src="../z/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../z/node_modules/jquerymy/jquerymy.min.js"></script>
+    <script type="text/javascript" src="../z/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./decomp.js"></script>
+    <script type="module" src="./curling.js"></script>
 
 </body>
 

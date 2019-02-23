@@ -2,15 +2,33 @@
   float: left;
   border: none;
   background-color: #FC6E51;
-  margin-left: 50px; }
+  margin-left: 50px;
+  width: 100px; }
 
 #score-blue {
   float: right;
   border: none;
   background-color: #5D9CEC;
-  margin-right: 50px; }
+  margin-right: 50px;
+  width: 100px; }
 
 #startButton {
   margin-bottom: 10px; }
+
+#message-red {
+  width: 150px;
+  color: #FC6E51; }
+
+#message-blue {
+  width: 150px;
+  color: #5D9CEC; }
+
+#message-red2 {
+  display: none;
+  color: #26C281; }
+
+#message-blue2 {
+  display: none;
+  color: #26C281; }
 
 /*# sourceMappingURL=curling.css.map */
