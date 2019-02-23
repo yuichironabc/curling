@@ -15,13 +15,6 @@ export default class {
         let Events = Matter.Events;
         let Query = Matter.Query;
 
-        // let redStone = Bodies.circle(80, 320, 30, {
-
-        //     label: 'stone-red',
-        //     render: {
-        //         fillStyle: "#FC6E51"
-        //     }
-        // });
         // 赤のスタートエリアを作成
         let redStartArea = Bodies.circle(80, 320, 120, {
 

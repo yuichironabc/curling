@@ -1,4 +1,3 @@
-// var Module = require('./module.js')
 import LibClass from './module.js';
 import ScoreClass from './score.js';
 import score from './score.js';
@@ -40,15 +39,7 @@ var data = {
         World = Matter.World,
         Mouse = Matter.Mouse,
         MouseConstraint = Matter.MouseConstraint,
-        // Constraint = Matter.Constraint,
-        // Composites = Matter.Composites,
-        // Bodies = Matter.Bodies,
-        // Body = Matter.Body,
         Events = Matter.Events;
-    // Sleeping = Matter.Sleeping,
-    // Svg = Matter.Svg,
-    // Vertices = Matter.Vertices,
-    // Common = Matter.Common;
 
     var engine = Engine.create({
         enableSleeping: true
@@ -176,6 +167,7 @@ var data = {
     engine.world.gravity.y = 0;
     World.add(engine.world, [mouseConstraint]);
 
+    // 実行
     Engine.run(engine);
     Render.run(render);
 })();
