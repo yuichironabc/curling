@@ -29,4 +29,4 @@ var server = http.createServer(function (req, res) {
         });
         res.end(data, 'utf-8');
     });
-}).listen(8080);
+}).listen(process.env.PORT || 3000);
