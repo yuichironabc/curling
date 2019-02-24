@@ -80,6 +80,9 @@ export default class {
 
             this.JudgeWinner(Score_Red, Score_Blue);
         });
+
+        // スタートボタンを押せるのは一回だけ
+        $('#startButton').prop('disabled', true);
     }
 
     JudgeWinner(Score_Red, Score_Blue) {
