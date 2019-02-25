@@ -6,6 +6,7 @@ let Module = new LibClass();
 let Score_Red = new ScoreClass('red', 0);
 let Score_Blue = new ScoreClass('blue', 0);
 
+// バインディング用のデータオブジェクト
 var data = {
     scoreRed: Score_Red.score,
     scoreBlue: Score_Blue.score
@@ -50,8 +51,8 @@ var data = {
         element: document.body,
         engine: engine,
         options: {
-            width: 1300,
-            height: 620,
+            width: window.innerWidth,
+            height: window.innerHeight * 0.9,
             background: "#FFFFFF",
             wireframes: false,
             wireframeBackground: "#1e90ff",
@@ -160,9 +161,9 @@ var data = {
     // オブジェクト作成
     // ハウスを作成する
     [
-        [window.innerWidth / 4, 'big', '#F0FFFF'],
-        [window.innerWidth / 8, 'middle', '#E0FFFF'],
-        [window.innerWidth / 26, 'small', '#AFEEEE']
+        [window.innerWidth * 0.24, 'big', '#F0FFFF'],
+        [window.innerWidth * 0.125, 'middle', '#E0FFFF'],
+        [window.innerWidth * 0.04, 'small', '#AFEEEE']
     ].forEach(set => {
         World.add(engine.world, Module.CreateHouse(set[0], set[1], set[2]));
     });
