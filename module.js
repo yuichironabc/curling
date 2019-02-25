@@ -106,7 +106,7 @@ export default class {
     CreateHouse(radius, label, color) {
 
         let Bodies = Matter.Bodies;
-        return Bodies.circle(650, 310, radius, {
+        return Bodies.circle(window.innerWidth / 2, $('canvas').prop('height') / 2, radius, {
 
             isSleeping: false,
             isSensor: true,

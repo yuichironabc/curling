@@ -143,9 +143,9 @@ var data = {
     // オブジェクト作成
     // ハウスを作成する
     [
-        [300, 'big', '#F0FFFF'],
-        [150, 'middle', '#E0FFFF'],
-        [50, 'small', '#AFEEEE']
+        [window.innerWidth / 4, 'big', '#F0FFFF'],
+        [window.innerWidth / 8, 'middle', '#E0FFFF'],
+        [window.innerWidth / 26, 'small', '#AFEEEE']
     ].forEach(set => {
         World.add(engine.world, Module.CreateHouse(set[0], set[1], set[2]));
     });
