@@ -86,7 +86,7 @@ export default class {
     }
 
     JudgeWinner(Score_Red, Score_Blue) {
-        if (Score_Red.isThrown && Score_Blue.isThrown) {
+        if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '') {
             if (Score_Red.score > Score_Blue.score) {
                 $('#message-red').text('RED WINNER').css('color', '#FC6E51');
             } else if (Score_Red.score < Score_Blue.score) {
