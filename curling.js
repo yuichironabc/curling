@@ -13,15 +13,16 @@ var data = {
 
 (function () {
 
-    $("#slider").slider({
-        min: 1,
-        max: 10,
-        step: 0.1,
-        slide: function () {
+    // $("#slider").slider({
+    //     min: 1,
+    //     max: 10,
+    //     step: 0.1,
+    //     slide: function () {
 
-        }
-    });
+    //     }
+    // });
 
+    // スコアボードにスコア管理用オブジェクトのスコアをバインドする
     $('#score-board').my({
         ui: {
             "#score-red": {
@@ -75,6 +76,11 @@ var data = {
         }
     });
 
+    /**
+     * 加点する。
+     * @param {ハウスオブジェクト} house 
+     * @param {ストーンオブジェクト} stone 
+     */
     function JudgeScoreUp(house, stone) {
         if (house.label == 'big' ||
             house.label == 'middle' ||
@@ -90,6 +96,11 @@ var data = {
         }
     }
 
+    /**
+     * 減点する。
+     * @param {ハウスオブジェクト} house 
+     * @param {ストーンオブジェクト} stone 
+     */
     function JudgeScoreDown(house, stone) {
         if (house.label == 'big' ||
             house.label == 'middle' ||
@@ -105,12 +116,18 @@ var data = {
         }
     }
 
+    /**
+     * 赤のスコアを更新する。
+     */
     function UpdateScoreRed() {
         $('#score-board').my("data", {
             scoreRed: Score_Red.score
         });
     }
 
+    /**
+     * 青のスコアを更新する。
+     */
     function UpdateScoreBlue() {
         $('#score-board').my("data", {
             scoreBlue: Score_Blue.score

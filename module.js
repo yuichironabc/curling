@@ -1,3 +1,6 @@
+/**
+ * モジュールクラス
+ */
 export default class {
     /**
      * ランダムに色を取得する
@@ -7,84 +10,60 @@ export default class {
     }
 
     /**
-     * ゲームを開始する
+     * ゲームを開始する。
+     * @param {Matterのエンジン} engine 
+     * @param {赤のスコア} Score_Red 
+     * @param {青のスコア} Score_Blue 
      */
     StartGame(engine, Score_Red, Score_Blue) {
         let World = Matter.World;
-        let Bodies = Matter.Bodies;
-        let Events = Matter.Events;
-        let Query = Matter.Query;
 
-        // 赤のスタートエリアを作成
-        let redStartArea = Bodies.circle(80, 320, 120, {
+        // スタートエリアを作成
+        let redStartArea = this.CreateStartArea(80, 320, 120, 'start-area-red');
+        let blueStartArea = this.CreateStartArea(1200, 320, 120, 'start-area-blue');
 
-            isSensor: true,
-            isStatic: true,
-            label: 'start-area-red',
-            render: {
-                fillStyle: "#FFFFFF"
-            }
-        });
-        World.add(engine.world, redStartArea);
-        // 青のスタートエリアを作成
-        let blueStartArea = Bodies.circle(1200, 320, 120, {
-
-            isSensor: true,
-            isStatic: true,
-            label: 'start-area-blue',
-            render: {
-                fillStyle: "#FFFFFF"
-            }
-        });
-        World.add(engine.world, blueStartArea);
-
-        // 赤のストーンを作成
-        let redStone = Bodies.circle(80, 320, 30, {
-
-            isSleeping: true,
-            label: 'stone-red',
-            render: {
-                fillStyle: "#FC6E51"
-            }
-        });
-        World.add(engine.world, redStone);
+        // ストーンを作成
+        let redStone = this.CreateStone(80, 320, 30, 'stone-red', '#FC6E51');
+        let blueStone = this.CreateStone(1200, 320, 30, 'stone-blue', '#5D9CEC');
 
         // Matter.Body.applyForce(redStone, Matter.Vector.create(0, 0), Matter.Vector.create(0.03, 0.01));
 
-        // 青のストーンを作成
-        let blueStone = Bodies.circle(1200, 320, 30, {
+        World.add(engine.world, [redStartArea, blueStartArea, redStone, blueStone]);
 
-            label: 'stone-blue',
-            render: {
-                fillStyle: "#5D9CEC"
-            }
-        });
-        World.add(engine.world, blueStone);
-
-        // ストーンのストップイベント
-        Events.on(redStone, "sleepStart", e => {
-            let collisions = Query.collides(redStone, [redStartArea]);
-            if (collisions.length == 0) {
-                Score_Red.isThrown = true;
-                redStone.isSleeping = false;
-            }
-
-            this.JudgeWinner(Score_Red, Score_Blue);
-        });
-        Events.on(blueStone, "sleepStart", e => {
-            let collisions = Query.collides(blueStone, [blueStartArea]);
-            if (collisions.length == 0) {
-                Score_Blue.isThrown = true;
-                blueStone.isSleeping = false;
-            }
-
-            this.JudgeWinner(Score_Red, Score_Blue);
-        });
+        // ストーンのスリープ開始イベントを設定
+        this.SetSleepStartEvent(redStone, redStartArea, Score_Red, Score_Red, Score_Blue);
+        this.SetSleepStartEvent(blueStone, blueStartArea, Score_Blue, Score_Red, Score_Blue);
 
         // スタートボタンを押せるのは一回だけ
         $('#startButton').prop('disabled', true);
     }
 
+    /**
+     * ストーンのスリープ開始イベントを設定する。
+     * @param {イベントを設定するストーン} stone 
+     * @param {ストーンに対応するスタートエリア} startArea 
+     * @param {ストーンに対応するスコアオブジェクト} score 
+     * @param {赤のスコアオブジェクト} score_Red
+     * @param {青のスコアオブジェクト} score_Blue
+     score_Red
+     */
+    SetSleepStartEvent(stone, startArea, score, score_Red, score_Blue) {
+        Matter.Events.on(stone, "sleepStart", e => {
+            let collisions = Matter.Query.collides(stone, [startArea]);
+            if (collisions.length == 0) {
+                score.isThrown = true;
+                stone.isSleeping = false;
+            }
+
+            this.JudgeWinner(score_Red, score_Blue);
+        });
+    }
+
+    /**
+     * 勝敗を判定する。
+     * @param {赤のスコアオブジェクト} Score_Red 
+     * @param {青のスコアオブジェクト} Score_Blue 
+     */
     JudgeWinner(Score_Red, Score_Blue) {
         if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '') {
             if (Score_Red.score > Score_Blue.score) {
@@ -99,7 +78,45 @@ export default class {
     }
 
     /**
-     * カーリングのハウスを生成する
+     * スタートエリア用の円を生成する。
+     * @param {X位置} x 
+     * @param {Y位置} y 
+     * @param {半径} radius 
+     * @param {ラベル} label 
+     */
+    CreateStartArea(x, y, radius, label) {
+        return Matter.Bodies.circle(x, y, radius, {
+
+            isSensor: true,
+            isStatic: true,
+            label: label,
+            render: {
+                fillStyle: "#FFFFFF"
+            }
+        });
+    }
+
+    /**
+     * ストーンを生成する。
+     * @param {X位置} x 
+     * @param {Y位置} y 
+     * @param {半径} radius 
+     * @param {ラベル} label 
+     * @param {色} color 
+     */
+    CreateStone(x, y, radius, label, color) {
+        return Matter.Bodies.circle(x, y, radius, {
+
+            isSleeping: true,
+            label: label,
+            render: {
+                fillStyle: color
+            }
+        });
+    }
+
+    /**
+     * カーリングのハウスを生成する。
      * @param {ハウスの半径} radius 
      * @param {ハウスに付ける内部的な名称} label 
      */
