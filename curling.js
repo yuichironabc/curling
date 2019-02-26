@@ -2,6 +2,13 @@ import LibClass from './module.js';
 import ScoreClass from './score.js';
 import score from './score.js';
 
+const HOUSE_RADIUS_BIG = window.innerWidth * 0.24;
+const HOUSE_RADIUS_MIDDLE = window.innerWidth * 0.125;
+const HOUSE_RADIUS_SMALL = window.innerWidth * 0.04;
+
+const MATTER_FIELD_WIDTH = window.innerWidth;
+const MATTER_FIELD_HEIGHT = window.innerWidth * 0.9;
+
 let Module = new LibClass();
 let Score_Red = new ScoreClass('red', 0);
 let Score_Blue = new ScoreClass('blue', 0);
@@ -35,7 +42,7 @@ var data = {
         }
     }, data);
 
-    // module aliases
+    // Matter内の各オブジェクトのエイリアスを作成する
     var Engine = Matter.Engine,
         Render = Matter.Render,
         World = Matter.World,
@@ -51,8 +58,8 @@ var data = {
         element: document.body,
         engine: engine,
         options: {
-            width: window.innerWidth,
-            height: window.innerHeight * 0.9,
+            width: MATTER_FIELD_WIDTH,
+            height: MATTER_FIELD_HEIGHT,
             background: "#FFFFFF",
             wireframes: false,
             wireframeBackground: "#1e90ff",
@@ -161,9 +168,9 @@ var data = {
     // オブジェクト作成
     // ハウスを作成する
     [
-        [window.innerWidth * 0.24, 'big', '#F0FFFF'],
-        [window.innerWidth * 0.125, 'middle', '#E0FFFF'],
-        [window.innerWidth * 0.04, 'small', '#AFEEEE']
+        [HOUSE_RADIUS_BIG, 'big', '#F0FFFF'],
+        [HOUSE_RADIUS_MIDDLE, 'middle', '#E0FFFF'],
+        [HOUSE_RADIUS_SMALL, 'small', '#AFEEEE']
     ].forEach(set => {
         World.add(engine.world, Module.CreateHouse(set[0], set[1], set[2]));
     });

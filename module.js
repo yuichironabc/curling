@@ -2,6 +2,15 @@
  * モジュールクラス
  */
 export default class {
+
+    constructor() {
+        this.STONE_COLOR_RED = '#FC6E51';
+        this.STONE_COLOR_BLUE = '#5D9CEC';
+        this.DRAW_COLOR = '#26C281';
+
+        this.HOUSE_X = window.innerWidth / 2;
+        this.HOUSE_Y = $('canvas').prop('height') / 2;
+    }
     /**
      * ランダムに色を取得する
      */
@@ -16,15 +25,23 @@ export default class {
      * @param {青のスコア} Score_Blue 
      */
     StartGame(engine, Score_Red, Score_Blue) {
+
+        const STONE_X_RED = 80;
+        const STONE_X_BLUE = 1200;
+        const STONE_Y = 320;
+
+        const START_AREA_RADIUS = 120;
+        const STONE_RADIUS = 30;
+
         let World = Matter.World;
 
         // スタートエリアを作成
-        let redStartArea = this.CreateStartArea(80, 320, 120, 'start-area-red');
-        let blueStartArea = this.CreateStartArea(1200, 320, 120, 'start-area-blue');
+        let redStartArea = this.CreateStartArea(STONE_X_RED, STONE_Y, START_AREA_RADIUS, 'start-area-red');
+        let blueStartArea = this.CreateStartArea(STONE_X_BLUE, STONE_Y, START_AREA_RADIUS, 'start-area-blue');
 
         // ストーンを作成
-        let redStone = this.CreateStone(80, 320, 30, 'stone-red', '#FC6E51');
-        let blueStone = this.CreateStone(1200, 320, 30, 'stone-blue', '#5D9CEC');
+        let redStone = this.CreateStone(STONE_X_RED, STONE_Y, STONE_RADIUS, 'stone-red', this.STONE_COLOR_RED);
+        let blueStone = this.CreateStone(STONE_X_BLUE, STONE_Y, STONE_RADIUS, 'stone-blue', this.STONE_COLOR_BLUE);
 
         // Matter.Body.applyForce(redStone, Matter.Vector.create(0, 0), Matter.Vector.create(0.03, 0.01));
 
@@ -67,12 +84,12 @@ export default class {
     JudgeWinner(Score_Red, Score_Blue) {
         if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '') {
             if (Score_Red.score > Score_Blue.score) {
-                $('#message-red').text('RED WINNER').css('color', '#FC6E51');
+                $('#message-red').text('RED WINNER').css('color', this.STONE_COLOR_RED);
             } else if (Score_Red.score < Score_Blue.score) {
-                $('#message-blue').text('BLUE WINNER').css('color', '#5D9CEC');
+                $('#message-blue').text('BLUE WINNER').css('color', this.STONE_COLOR_BLUE);
             } else {
-                $('#message-red').text('DRAW').css('color', '#26C281');
-                $('#message-blue').text('DRAW').css('color', '#26C281');
+                $('#message-red').text('DRAW').css('color', this.DRAW_COLOR);
+                $('#message-blue').text('DRAW').css('color', this.DRAW_COLOR);
             }
         }
     }
@@ -123,7 +140,7 @@ export default class {
     CreateHouse(radius, label, color) {
 
         let Bodies = Matter.Bodies;
-        return Bodies.circle(window.innerWidth / 2, $('canvas').prop('height') / 2, radius, {
+        return Bodies.circle(this.HOUSE_X, this.HOUSE_Y, radius, {
 
             isSleeping: false,
             isSensor: true,
