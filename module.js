@@ -28,7 +28,7 @@ export default class {
 
         const STONE_X_RED = 80;
         const STONE_X_BLUE = window.innerWidth - 80;
-        const STONE_Y = 320;
+        const STONE_Y = window.innerHeight * 0.9 / 2;
 
         const START_AREA_RADIUS = 120;
         const STONE_RADIUS = 30;

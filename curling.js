@@ -2,18 +2,22 @@ import LibClass from './module.js';
 import ScoreClass from './score.js';
 import score from './score.js';
 
+
+
 (function () {
 
-    let Module = new LibClass();
-    let Score_Red = new ScoreClass('red', 0);
-    let Score_Blue = new ScoreClass('blue', 0);
-
+    // ハウスの半径
     const HOUSE_RADIUS_BIG = window.innerWidth * 0.24;
     const HOUSE_RADIUS_MIDDLE = window.innerWidth * 0.125;
     const HOUSE_RADIUS_SMALL = window.innerWidth * 0.04;
 
+    // フィールドサイズ
     const MATTER_FIELD_WIDTH = window.innerWidth;
     const MATTER_FIELD_HEIGHT = window.innerHeight * 0.9;
+
+    let Module = new LibClass();
+    let Score_Red = new ScoreClass('red', 0);
+    let Score_Blue = new ScoreClass('blue', 0);
 
     // $("#slider").slider({
     //     min: 1,
