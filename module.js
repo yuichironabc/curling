@@ -8,8 +8,8 @@ export default class {
         this.STONE_COLOR_BLUE = '#5D9CEC';
         this.DRAW_COLOR = '#26C281';
 
-        this.HOUSE_X = window.innerWidth / 2;
-        this.HOUSE_Y = $('canvas').prop('height') / 2;
+        // this.HOUSE_X = window.innerWidth / 2;
+        // this.HOUSE_Y = $('canvas').prop('height') / 2;
     }
     /**
      * ランダムに色を取得する
@@ -27,7 +27,7 @@ export default class {
     StartGame(engine, Score_Red, Score_Blue) {
 
         const STONE_X_RED = 80;
-        const STONE_X_BLUE = 1200;
+        const STONE_X_BLUE = window.innerWidth - 80;
         const STONE_Y = 320;
 
         const START_AREA_RADIUS = 120;
@@ -82,7 +82,7 @@ export default class {
      * @param {青のスコアオブジェクト} Score_Blue 
      */
     JudgeWinner(Score_Red, Score_Blue) {
-        if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '') {
+        if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '' && $('#message-blue').text() == '') {
             if (Score_Red.score > Score_Blue.score) {
                 $('#message-red').text('RED WINNER').css('color', this.STONE_COLOR_RED);
             } else if (Score_Red.score < Score_Blue.score) {
@@ -139,8 +139,9 @@ export default class {
      */
     CreateHouse(radius, label, color) {
 
-        let Bodies = Matter.Bodies;
-        return Bodies.circle(this.HOUSE_X, this.HOUSE_Y, radius, {
+        let x = window.innerWidth / 2;
+        let y = $('canvas').prop('height') / 2;
+        return Matter.Bodies.circle(x, y, radius, {
 
             isSleeping: false,
             isSensor: true,
