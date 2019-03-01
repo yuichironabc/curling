@@ -1,16 +1,14 @@
+import Const from './const.js';
+
 /**
  * モジュールクラス
  */
 export default class {
 
     constructor() {
-        this.STONE_COLOR_RED = '#FC6E51';
-        this.STONE_COLOR_BLUE = '#5D9CEC';
-        this.DRAW_COLOR = '#26C281';
 
-        // this.HOUSE_X = window.innerWidth / 2;
-        // this.HOUSE_Y = $('canvas').prop('height') / 2;
     }
+
     /**
      * ランダムに色を取得する
      */
@@ -26,22 +24,22 @@ export default class {
      */
     StartGame(engine, Score_Red, Score_Blue) {
 
-        const STONE_X_RED = 80;
-        const STONE_X_BLUE = window.innerWidth - 80;
-        const STONE_Y = window.innerHeight * 0.9 / 2;
+        // const STONE_X_RED = 80;
+        // const STONE_X_BLUE = window.innerWidth - 80;
+        // const STONE_Y = window.innerHeight * 0.9 / 2;
 
-        const START_AREA_RADIUS = 120;
-        const STONE_RADIUS = 30;
+        // const START_AREA_RADIUS = 120;
+        // const STONE_RADIUS = window.innerHeight * 0.9 * 0.08 * 0.6;
 
         let World = Matter.World;
 
         // スタートエリアを作成
-        let redStartArea = this.CreateStartArea(STONE_X_RED, STONE_Y, START_AREA_RADIUS, 'start-area-red');
-        let blueStartArea = this.CreateStartArea(STONE_X_BLUE, STONE_Y, START_AREA_RADIUS, 'start-area-blue');
+        let redStartArea = this.CreateStartArea(Const.STONE_X_RED, Const.STONE_Y, Const.START_AREA_RADIUS, 'start-area-red');
+        let blueStartArea = this.CreateStartArea(Const.STONE_X_BLUE, Const.STONE_Y, Const.START_AREA_RADIUS, 'start-area-blue');
 
         // ストーンを作成
-        let redStone = this.CreateStone(STONE_X_RED, STONE_Y, STONE_RADIUS, 'stone-red', this.STONE_COLOR_RED);
-        let blueStone = this.CreateStone(STONE_X_BLUE, STONE_Y, STONE_RADIUS, 'stone-blue', this.STONE_COLOR_BLUE);
+        let redStone = this.CreateStone(Const.STONE_X_RED, Const.STONE_Y, Const.STONE_RADIUS, 'stone-red', Const.STONE_COLOR_RED);
+        let blueStone = this.CreateStone(Const.STONE_X_BLUE, Const.STONE_Y, Const.STONE_RADIUS, 'stone-blue', Const.STONE_COLOR_BLUE);
 
         // Matter.Body.applyForce(redStone, Matter.Vector.create(0, 0), Matter.Vector.create(0.03, 0.01));
 
@@ -84,12 +82,12 @@ export default class {
     JudgeWinner(Score_Red, Score_Blue) {
         if (Score_Red.isThrown && Score_Blue.isThrown && $('#message-red').text() == '' && $('#message-blue').text() == '') {
             if (Score_Red.score > Score_Blue.score) {
-                $('#message-red').text('RED WINNER').css('color', this.STONE_COLOR_RED);
+                $('#message-red').text('RED WINNER').css('color', Const.STONE_COLOR_RED);
             } else if (Score_Red.score < Score_Blue.score) {
-                $('#message-blue').text('BLUE WINNER').css('color', this.STONE_COLOR_BLUE);
+                $('#message-blue').text('BLUE WINNER').css('color', Const.STONE_COLOR_BLUE);
             } else {
-                $('#message-red').text('DRAW').css('color', this.DRAW_COLOR);
-                $('#message-blue').text('DRAW').css('color', this.DRAW_COLOR);
+                $('#message-red').text('DRAW').css('color', Const.DRAW_COLOR);
+                $('#message-blue').text('DRAW').css('color', Const.DRAW_COLOR);
             }
         }
     }

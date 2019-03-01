@@ -1,19 +1,8 @@
 import LibClass from './module.js';
 import ScoreClass from './score.js';
-import score from './score.js';
-
-
+import Const from './const.js';
 
 (function () {
-
-    // ハウスの半径
-    const HOUSE_RADIUS_BIG = window.innerWidth * 0.24;
-    const HOUSE_RADIUS_MIDDLE = window.innerWidth * 0.125;
-    const HOUSE_RADIUS_SMALL = window.innerWidth * 0.04;
-
-    // フィールドサイズ
-    const MATTER_FIELD_WIDTH = window.innerWidth;
-    const MATTER_FIELD_HEIGHT = window.innerHeight * 0.9;
 
     let Module = new LibClass();
     let Score_Red = new ScoreClass('red', 0);
@@ -62,8 +51,8 @@ import score from './score.js';
         element: document.body,
         engine: engine,
         options: {
-            width: MATTER_FIELD_WIDTH,
-            height: MATTER_FIELD_HEIGHT,
+            width: Const.MATTER_FIELD_WIDTH,
+            height: Const.MATTER_FIELD_HEIGHT,
             background: "#FFFFFF",
             wireframes: false,
             wireframeBackground: "#1e90ff",
@@ -172,9 +161,9 @@ import score from './score.js';
     // オブジェクト作成
     // ハウスを作成する
     [
-        [HOUSE_RADIUS_BIG, 'big', '#F0FFFF'],
-        [HOUSE_RADIUS_MIDDLE, 'middle', '#E0FFFF'],
-        [HOUSE_RADIUS_SMALL, 'small', '#AFEEEE']
+        [Const.HOUSE_RADIUS_BIG, 'big', '#F0FFFF'],
+        [Const.HOUSE_RADIUS_MIDDLE, 'middle', '#E0FFFF'],
+        [Const.HOUSE_RADIUS_SMALL, 'small', '#AFEEEE']
     ].forEach(set => {
         World.add(engine.world, Module.CreateHouse(set[0], set[1], set[2]));
     });
