@@ -2,4 +2,9 @@
 ブラウザで遊べるシンプルなカーリングゲームです。
 
 # 使用技術
-JavaScript,Matter.js,Node.js,heroku
+## 言語
+JavaScript
+## ライブラリ
+Node.js,Matter.js
+## デプロイ環境
+heroku
